@@ -1,9 +1,32 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+final List<String> restourants = ["Little Brasil", "Be Famous", "Ом", "Пинта", "Сансара", "У Афанасича", "Император", "Наршараб", "Дареджани"];
+final List<String> menu = ["Латино-американская кухня","Европейская кухня" ,"Северо-американская кухня","Алкоголь",
+"Индийская кухня","Русская Кухня","Европейская кухня","Восточная кухня","Грузинская кухня"];
+final List<String> addresses = ["Аль-Фараби 140a/4","Сейуллина 617","Достык 43","Ауэзова 84А","Кунаева 75","Достык 123/8","Толе би 207","Достык 63","Достык, 71"];
 
+void main() {
+  //runApp(const MyApp());
+  
+  runApp(MaterialApp(
+      home:  Scaffold(
+      body: ListView.separated(
+          padding: const EdgeInsets.all(8),
+          itemCount: restourants.length,
+          separatorBuilder: (BuildContext context, int index) => Divider(),
+          itemBuilder: (BuildContext context, int index) {
+            return ListTile(
+                title: Text(restourants[index], style:TextStyle(fontSize: 22)),
+                //leading: Icon(Icons.face),
+                trailing: Icon(Icons.phone),
+                subtitle: Text("""Меню: ${menu[index]}
+                Адреса: ${addresses[index]}""")
+            );
+          }
+      ),
+        appBar: AppBar(title: Text("Рестораны")),)
+  ));
+}
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
